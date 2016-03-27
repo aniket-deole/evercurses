@@ -393,7 +393,7 @@ on `(hostname || uname -n) 2>/dev/null | sed 1q`
 "
 
 # Files that config.status was made for.
-config_files=" Makefile"
+config_files=" Makefile src/Makefile"
 config_commands=" depfiles"
 
 ac_cs_usage="\
@@ -531,6 +531,7 @@ do
   case $ac_config_target in
     "depfiles") CONFIG_COMMANDS="$CONFIG_COMMANDS depfiles" ;;
     "Makefile") CONFIG_FILES="$CONFIG_FILES Makefile" ;;
+    "src/Makefile") CONFIG_FILES="$CONFIG_FILES src/Makefile" ;;
 
   *) as_fn_error $? "invalid argument: \`$ac_config_target'" "$LINENO" 5;;
   esac
@@ -599,6 +600,15 @@ S["am__EXEEXT_FALSE"]=""
 S["am__EXEEXT_TRUE"]="#"
 S["LTLIBOBJS"]=""
 S["LIBOBJS"]=""
+S["EGREP"]="/usr/bin/grep -E"
+S["GREP"]="/usr/bin/grep"
+S["CPP"]="gcc -E"
+S["am__fastdepCC_FALSE"]="#"
+S["am__fastdepCC_TRUE"]=""
+S["CCDEPMODE"]="depmode=gcc3"
+S["ac_ct_CC"]="gcc"
+S["CFLAGS"]="-g -O2"
+S["CC"]="gcc"
 S["am__fastdepCXX_FALSE"]="#"
 S["am__fastdepCXX_TRUE"]=""
 S["CXXDEPMODE"]="depmode=gcc3"
@@ -651,7 +661,8 @@ S["ECHO_T"]=""
 S["ECHO_N"]="-n"
 S["ECHO_C"]=""
 S["DEFS"]="-DPACKAGE_NAME=\\\"evercurses\\\" -DPACKAGE_TARNAME=\\\"evercurses\\\" -DPACKAGE_VERSION=\\\"0.1\\\" -DPACKAGE_STRING=\\\"evercurses\\ 0.1\\\" -DPACKAGE_BUGREPORT=\\\""\
-"aniket.deole@gmail.com\\\" -DPACKAGE_URL=\\\"\\\" -DPACKAGE=\\\"evercurses\\\" -DVERSION=\\\"0.1\\\""
+"aniket.deole@gmail.com\\\" -DPACKAGE_URL=\\\"\\\" -DPACKAGE=\\\"evercurses\\\" -DVERSION=\\\"0.1\\\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DH"\
+"AVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_CURSES_H=1"
 S["mandir"]="${datarootdir}/man"
 S["localedir"]="${datarootdir}/locale"
 S["libdir"]="${exec_prefix}/lib"
