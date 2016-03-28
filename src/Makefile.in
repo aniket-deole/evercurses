@@ -98,9 +98,11 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_evercurses_OBJECTS = main.$(OBJEXT)
+am_evercurses_OBJECTS = main.$(OBJEXT) evercurses.$(OBJEXT)
 evercurses_OBJECTS = $(am_evercurses_OBJECTS)
 evercurses_LDADD = $(LDADD)
+evercurses_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
+	$(evercurses_LDFLAGS) $(LDFLAGS) -o $@
 AM_V_P = $(am__v_P_@AM_V@)
 am__v_P_ = $(am__v_P_@AM_DEFAULT_V@)
 am__v_P_0 = false
@@ -250,7 +252,11 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-evercurses_SOURCES = main.cc
+AM_LDFLAGS = -lncurses++w
+evercurses_LDFLAGS = -lncurses++ -lncursesw
+evercurses_SOURCES = main.cc \
+										 evercurses.cc
+
 all: all-am
 
 .SUFFIXES:
@@ -329,7 +335,7 @@ clean-binPROGRAMS:
 
 evercurses$(EXEEXT): $(evercurses_OBJECTS) $(evercurses_DEPENDENCIES) $(EXTRA_evercurses_DEPENDENCIES) 
 	@rm -f evercurses$(EXEEXT)
-	$(AM_V_CXXLD)$(CXXLINK) $(evercurses_OBJECTS) $(evercurses_LDADD) $(LIBS)
+	$(AM_V_CXXLD)$(evercurses_LINK) $(evercurses_OBJECTS) $(evercurses_LDADD) $(LIBS)
 
 mostlyclean-compile:
 	-rm -f *.$(OBJEXT)
@@ -337,6 +343,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
 
 .cc.o:

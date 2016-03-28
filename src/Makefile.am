@@ -1,5 +1,10 @@
 AUTOMAKE_OPTIONS = foreign
 bin_PROGRAMS = evercurses
 
-evercurses_SOURCES = main.cc
+AM_LDFLAGS = -lncurses++w
+
+evercurses_LDFLAGS = -lncurses++ -lncursesw
+
+evercurses_SOURCES = main.cc \
+										 evercurses.cc
 
