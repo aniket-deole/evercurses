@@ -1,10 +1,12 @@
 #include <stdio.h>
 #include <ncurses.h>
 
-WINDOW* window;
+#include <memory>
+
+#include "window.h"
 
 int main () {
-  int input;
+  auto input = 0;
   initscr ();
 
   if(has_colors() == FALSE) {
@@ -20,15 +22,13 @@ int main () {
   curs_set (0);
   noecho ();
 
-  window = newwin (50, 50, 0, 0);
+  std::unique_ptr<Window> window (new Window (10, 50, 0, 0));
   while ((char(input) != 'q') && (char(input) != 'Q')) {
     
-    window = newwin (50,50,0,0);
+    window->refresh ();
     
-    wborder (window, '|', '|', '-', '-', '+', '+', '+', '+');
-    mvwprintw(window, 3, 1, "%s", "File");
+    update_panels ();
     refresh ();
-    wrefresh (window);
     input = getch ();
   }
 

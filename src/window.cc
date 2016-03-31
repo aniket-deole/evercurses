@@ -2,7 +2,21 @@
 
 #include "window.h"
 
-Window::Window () {
-  window = newwin (10, 50, 0, 0);
+Window::Window (unsigned int height, unsigned width,
+    unsigned int x, unsigned int y) {
+
+  this->height = height;
+  this->width = width;
+  this->x = x;
+  this->y = y;
+
+  window = newwin (height, width, x, y);
   wborder (window, '|', '|', '-', '-', '+', '+', '+', '+');
+
+  panel = new_panel (window);
+  
+}
+
+void Window::refresh () {
+ 
 }

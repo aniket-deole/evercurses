@@ -253,8 +253,8 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
-AM_LDFLAGS = -lncurses
-evercurses_LDFLAGS = -lncurses
+AM_LDFLAGS = -lncurses -lpanel
+evercurses_LDFLAGS = -lncurses -lpanel
 evercurses_SOURCES = main.cc \
 										 evercurses.cc \
 										 window.cc
