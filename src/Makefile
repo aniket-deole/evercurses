@@ -98,7 +98,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_evercurses_OBJECTS = main.$(OBJEXT) evercurses.$(OBJEXT)
+am_evercurses_OBJECTS = main.$(OBJEXT) evercurses.$(OBJEXT) \
+	window.$(OBJEXT)
 evercurses_OBJECTS = $(am_evercurses_OBJECTS)
 evercurses_LDADD = $(LDADD)
 evercurses_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
@@ -160,13 +161,13 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/aniket/Development/evercurses/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/aniket/Development/evercurses/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/aniket/Development/evercurses/missing autoconf
-AUTOHEADER = ${SHELL} /home/aniket/Development/evercurses/missing autoheader
-AUTOMAKE = ${SHELL} /home/aniket/Development/evercurses/missing automake-1.15
-AWK = gawk
+AUTOCONF = ${SHELL} /Users/aniket/Development/evercurses/missing autoconf
+AUTOHEADER = ${SHELL} /Users/aniket/Development/evercurses/missing autoheader
+AUTOMAKE = ${SHELL} /Users/aniket/Development/evercurses/missing automake-1.15
+AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -178,13 +179,13 @@ CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"evercurses\" -DPACKAGE_TARNAME=\"evercurses\" -DPACKAGE_VERSION=\"0.1\" -DPACKAGE_STRING=\"evercurses\ 0.1\" -DPACKAGE_BUGREPORT=\"aniket.deole@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"evercurses\" -DVERSION=\"0.1\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_CURSES_H=1
 DEPDIR = .deps
-ECHO_C = 
-ECHO_N = -n
+ECHO_C = \c
+ECHO_N = 
 ECHO_T = 
 EGREP = /usr/bin/grep -E
 EXEEXT = 
 GREP = /usr/bin/grep
-INSTALL = /usr/bin/install -c
+INSTALL = /usr/local/bin/ginstall -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
@@ -193,8 +194,8 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/aniket/Development/evercurses/missing makeinfo
-MKDIR_P = /usr/bin/mkdir -p
+MAKEINFO = ${SHELL} /Users/aniket/Development/evercurses/missing makeinfo
+MKDIR_P = /usr/local/bin/gmkdir -p
 OBJEXT = o
 PACKAGE = evercurses
 PACKAGE_BUGREPORT = aniket.deole@gmail.com
@@ -208,10 +209,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/aniket/Development/evercurses/src
-abs_srcdir = /home/aniket/Development/evercurses/src
-abs_top_builddir = /home/aniket/Development/evercurses
-abs_top_srcdir = /home/aniket/Development/evercurses
+abs_builddir = /Users/aniket/Development/evercurses/src
+abs_srcdir = /Users/aniket/Development/evercurses/src
+abs_top_builddir = /Users/aniket/Development/evercurses
+abs_top_srcdir = /Users/aniket/Development/evercurses
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -231,7 +232,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/aniket/Development/evercurses/install-sh
+install_sh = ${SHELL} /Users/aniket/Development/evercurses/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -252,10 +253,11 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
-AM_LDFLAGS = -lncurses++w
-evercurses_LDFLAGS = -lncurses++ -lncursesw
+AM_LDFLAGS = -lncurses
+evercurses_LDFLAGS = -lncurses
 evercurses_SOURCES = main.cc \
-										 evercurses.cc
+										 evercurses.cc \
+										 window.cc
 
 all: all-am
 
@@ -345,6 +347,7 @@ distclean-compile:
 
 include ./$(DEPDIR)/evercurses.Po
 include ./$(DEPDIR)/main.Po
+include ./$(DEPDIR)/window.Po
 
 .cc.o:
 	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<

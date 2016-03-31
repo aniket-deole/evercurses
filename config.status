@@ -431,11 +431,11 @@ Copyright (C) 2012 Free Software Foundation, Inc.
 This config.status script is free software; the Free Software Foundation
 gives unlimited permission to copy, distribute and modify it."
 
-ac_pwd='/home/aniket/Development/evercurses'
+ac_pwd='/Users/aniket/Development/evercurses'
 srcdir='.'
-INSTALL='/usr/bin/install -c'
-MKDIR_P='/usr/bin/mkdir -p'
-AWK='gawk'
+INSTALL='/usr/local/bin/ginstall -c'
+MKDIR_P='/usr/local/bin/gmkdir -p'
+AWK='awk'
 test -n "$AWK" || AWK=awk
 # The default lists apply if the user does not specify any file.
 ac_need_defaults=:
@@ -635,17 +635,17 @@ S["am__tar"]="$${TAR-tar} chof - \"$$tardir\""
 S["AMTAR"]="$${TAR-tar}"
 S["am__leading_dot"]="."
 S["SET_MAKE"]=""
-S["AWK"]="gawk"
+S["AWK"]="awk"
 S["mkdir_p"]="$(MKDIR_P)"
-S["MKDIR_P"]="/usr/bin/mkdir -p"
+S["MKDIR_P"]="/usr/local/bin/gmkdir -p"
 S["INSTALL_STRIP_PROGRAM"]="$(install_sh) -c -s"
 S["STRIP"]=""
-S["install_sh"]="${SHELL} /home/aniket/Development/evercurses/install-sh"
-S["MAKEINFO"]="${SHELL} /home/aniket/Development/evercurses/missing makeinfo"
-S["AUTOHEADER"]="${SHELL} /home/aniket/Development/evercurses/missing autoheader"
-S["AUTOMAKE"]="${SHELL} /home/aniket/Development/evercurses/missing automake-1.15"
-S["AUTOCONF"]="${SHELL} /home/aniket/Development/evercurses/missing autoconf"
-S["ACLOCAL"]="${SHELL} /home/aniket/Development/evercurses/missing aclocal-1.15"
+S["install_sh"]="${SHELL} /Users/aniket/Development/evercurses/install-sh"
+S["MAKEINFO"]="${SHELL} /Users/aniket/Development/evercurses/missing makeinfo"
+S["AUTOHEADER"]="${SHELL} /Users/aniket/Development/evercurses/missing autoheader"
+S["AUTOMAKE"]="${SHELL} /Users/aniket/Development/evercurses/missing automake-1.15"
+S["AUTOCONF"]="${SHELL} /Users/aniket/Development/evercurses/missing autoconf"
+S["ACLOCAL"]="${SHELL} /Users/aniket/Development/evercurses/missing aclocal-1.15"
 S["VERSION"]="0.1"
 S["PACKAGE"]="evercurses"
 S["CYGPATH_W"]="echo"
@@ -658,8 +658,8 @@ S["host_alias"]=""
 S["build_alias"]=""
 S["LIBS"]=""
 S["ECHO_T"]=""
-S["ECHO_N"]="-n"
-S["ECHO_C"]=""
+S["ECHO_N"]=""
+S["ECHO_C"]="\\c"
 S["DEFS"]="-DPACKAGE_NAME=\\\"evercurses\\\" -DPACKAGE_TARNAME=\\\"evercurses\\\" -DPACKAGE_VERSION=\\\"0.1\\\" -DPACKAGE_STRING=\\\"evercurses\\ 0.1\\\" -DPACKAGE_BUGREPORT=\\\""\
 "aniket.deole@gmail.com\\\" -DPACKAGE_URL=\\\"\\\" -DPACKAGE=\\\"evercurses\\\" -DVERSION=\\\"0.1\\\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DH"\
 "AVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_CURSES_H=1"

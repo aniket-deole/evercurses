@@ -98,7 +98,8 @@ CONFIG_CLEAN_FILES =
 CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
-am_evercurses_OBJECTS = main.$(OBJEXT) evercurses.$(OBJEXT)
+am_evercurses_OBJECTS = main.$(OBJEXT) evercurses.$(OBJEXT) \
+	window.$(OBJEXT)
 evercurses_OBJECTS = $(am_evercurses_OBJECTS)
 evercurses_LDADD = $(LDADD)
 evercurses_LINK = $(CXXLD) $(AM_CXXFLAGS) $(CXXFLAGS) \
@@ -252,10 +253,11 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-AM_LDFLAGS = -lncurses++w
-evercurses_LDFLAGS = -lncurses++ -lncursesw
+AM_LDFLAGS = -lncurses
+evercurses_LDFLAGS = -lncurses
 evercurses_SOURCES = main.cc \
-										 evercurses.cc
+										 evercurses.cc \
+										 window.cc
 
 all: all-am
 
@@ -345,6 +347,7 @@ distclean-compile:
 
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/main.Po@am__quote@
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/window.Po@am__quote@
 
 .cc.o:
 @am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXXCOMPILE) -MT $@ -MD -MP -MF $(DEPDIR)/$*.Tpo -c -o $@ $<
