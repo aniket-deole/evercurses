@@ -24,6 +24,13 @@ class ScrollableMenu {
     PANEL* getPanel () {
       return panel;
     }
+
+    ScrollableMenu* getNextMenu () {
+      return nextMenu;
+    }
+
+    void refreshSubsequentItems ();
+
  private:
     ITEM** items;
     MENU* menu;
@@ -34,7 +41,8 @@ class ScrollableMenu {
     chtype color;
 
     unsigned int height, width, x, y;
-
+  
+    ScrollableMenu* nextMenu;
 
 };
 

@@ -21,10 +21,13 @@ int main () {
   refresh ();
 
 
-  ScrollableMenu sm(10,50,1,1);
-  ScrollableMenu sm2(10,50,1,50);
+  ScrollableMenu sm(10,30,1,1);
+  ScrollableMenu sm2(10,30,1,30);
+  ScrollableMenu sm3 (10, 30, 1, 60);
   
   sm.nextPanel (&sm2);
+  sm2.nextPanel (&sm3);
+  sm3.nextPanel (&sm);
 
   update_panels ();
   doupdate ();
@@ -37,13 +40,17 @@ int main () {
       case KEY_UP:
         activeWindow->prevItem ();
         break;
-      case KEY_RIGHT:
-        top_panel ((PANEL*) panel_userptr (sm2.getPanel ()));
-        activeWindow = &sm2;
+      case '\t':
+        top_panel ((PANEL*) panel_userptr (activeWindow->getPanel ()));
+        activeWindow = activeWindow->getNextMenu ();
+        break;
+      case '\n':
+        activeWindow->refreshSubsequentItems ();
         break;
     }        
     update_panels ();
     doupdate ();
+    refresh ();
     input = getch ();
   }
 
