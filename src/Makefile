@@ -99,7 +99,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_evercurses_OBJECTS = evercurses-main.$(OBJEXT) \
-	evercurses-evercurses.$(OBJEXT) evercurses-window.$(OBJEXT)
+	evercurses-evercurses.$(OBJEXT) evercurses-window.$(OBJEXT) \
+	evercurses-ScrollableMenu.$(OBJEXT)
 evercurses_OBJECTS = $(am_evercurses_OBJECTS)
 evercurses_LDADD = $(LDADD)
 evercurses_LINK = $(CXXLD) $(evercurses_CXXFLAGS) $(CXXFLAGS) \
@@ -165,13 +166,13 @@ ETAGS = etags
 CTAGS = ctags
 am__DIST_COMMON = $(srcdir)/Makefile.in $(top_srcdir)/depcomp
 DISTFILES = $(DIST_COMMON) $(DIST_SOURCES) $(TEXINFOS) $(EXTRA_DIST)
-ACLOCAL = ${SHELL} /home/aniket/Development/evercurses/missing aclocal-1.15
+ACLOCAL = ${SHELL} /Users/aniket/Development/evercurses/missing aclocal-1.15
 AMTAR = $${TAR-tar}
 AM_DEFAULT_VERBOSITY = 1
-AUTOCONF = ${SHELL} /home/aniket/Development/evercurses/missing autoconf
-AUTOHEADER = ${SHELL} /home/aniket/Development/evercurses/missing autoheader
-AUTOMAKE = ${SHELL} /home/aniket/Development/evercurses/missing automake-1.15
-AWK = gawk
+AUTOCONF = ${SHELL} /Users/aniket/Development/evercurses/missing autoconf
+AUTOHEADER = ${SHELL} /Users/aniket/Development/evercurses/missing autoheader
+AUTOMAKE = ${SHELL} /Users/aniket/Development/evercurses/missing automake-1.15
+AWK = awk
 CC = gcc
 CCDEPMODE = depmode=gcc3
 CFLAGS = -g -O2
@@ -183,13 +184,13 @@ CXXFLAGS = -g -O2
 CYGPATH_W = echo
 DEFS = -DPACKAGE_NAME=\"evercurses\" -DPACKAGE_TARNAME=\"evercurses\" -DPACKAGE_VERSION=\"0.1\" -DPACKAGE_STRING=\"evercurses\ 0.1\" -DPACKAGE_BUGREPORT=\"aniket.deole@gmail.com\" -DPACKAGE_URL=\"\" -DPACKAGE=\"evercurses\" -DVERSION=\"0.1\" -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_CURSES_H=1
 DEPDIR = .deps
-ECHO_C = 
-ECHO_N = -n
+ECHO_C = \c
+ECHO_N = 
 ECHO_T = 
 EGREP = /usr/bin/grep -E
 EXEEXT = 
 GREP = /usr/bin/grep
-INSTALL = /usr/bin/install -c
+INSTALL = /usr/local/bin/ginstall -c
 INSTALL_DATA = ${INSTALL} -m 644
 INSTALL_PROGRAM = ${INSTALL}
 INSTALL_SCRIPT = ${INSTALL}
@@ -198,8 +199,8 @@ LDFLAGS =
 LIBOBJS = 
 LIBS = 
 LTLIBOBJS = 
-MAKEINFO = ${SHELL} /home/aniket/Development/evercurses/missing makeinfo
-MKDIR_P = /usr/bin/mkdir -p
+MAKEINFO = ${SHELL} /Users/aniket/Development/evercurses/missing makeinfo
+MKDIR_P = /usr/local/bin/gmkdir -p
 OBJEXT = o
 PACKAGE = evercurses
 PACKAGE_BUGREPORT = aniket.deole@gmail.com
@@ -213,10 +214,10 @@ SET_MAKE =
 SHELL = /bin/sh
 STRIP = 
 VERSION = 0.1
-abs_builddir = /home/aniket/Development/evercurses/src
-abs_srcdir = /home/aniket/Development/evercurses/src
-abs_top_builddir = /home/aniket/Development/evercurses
-abs_top_srcdir = /home/aniket/Development/evercurses
+abs_builddir = /Users/aniket/Development/evercurses/src
+abs_srcdir = /Users/aniket/Development/evercurses/src
+abs_top_builddir = /Users/aniket/Development/evercurses
+abs_top_srcdir = /Users/aniket/Development/evercurses
 ac_ct_CC = gcc
 ac_ct_CXX = g++
 am__include = include
@@ -236,7 +237,7 @@ host_alias =
 htmldir = ${docdir}
 includedir = ${prefix}/include
 infodir = ${datarootdir}/info
-install_sh = ${SHELL} /home/aniket/Development/evercurses/install-sh
+install_sh = ${SHELL} /Users/aniket/Development/evercurses/install-sh
 libdir = ${exec_prefix}/lib
 libexecdir = ${exec_prefix}/libexec
 localedir = ${datarootdir}/locale
@@ -257,12 +258,13 @@ top_build_prefix = ../
 top_builddir = ..
 top_srcdir = ..
 AUTOMAKE_OPTIONS = foreign
-AM_LDFLAGS = -lncurses -lpanel
+AM_LDFLAGS = -lncurses -lpanel -lmenu
 evercurses_CXXFLAGS = -std=c++11
-evercurses_LDFLAGS = -lncurses -lpanel
+evercurses_LDFLAGS = -lncurses -lpanel -lmenu
 evercurses_SOURCES = main.cc \
 										 evercurses.cc \
-										 window.cc
+										 window.cc \
+										 ScrollableMenu.cc
 
 all: all-am
 
@@ -350,6 +352,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+include ./$(DEPDIR)/evercurses-ScrollableMenu.Po
 include ./$(DEPDIR)/evercurses-evercurses.Po
 include ./$(DEPDIR)/evercurses-main.Po
 include ./$(DEPDIR)/evercurses-window.Po
@@ -409,6 +412,20 @@ evercurses-window.obj: window.cc
 #	$(AM_V_CXX)source='window.cc' object='evercurses-window.obj' libtool=no \
 #	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
 #	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-window.obj `if test -f 'window.cc'; then $(CYGPATH_W) 'window.cc'; else $(CYGPATH_W) '$(srcdir)/window.cc'; fi`
+
+evercurses-ScrollableMenu.o: ScrollableMenu.cc
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -MT evercurses-ScrollableMenu.o -MD -MP -MF $(DEPDIR)/evercurses-ScrollableMenu.Tpo -c -o evercurses-ScrollableMenu.o `test -f 'ScrollableMenu.cc' || echo '$(srcdir)/'`ScrollableMenu.cc
+	$(AM_V_at)$(am__mv) $(DEPDIR)/evercurses-ScrollableMenu.Tpo $(DEPDIR)/evercurses-ScrollableMenu.Po
+#	$(AM_V_CXX)source='ScrollableMenu.cc' object='evercurses-ScrollableMenu.o' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-ScrollableMenu.o `test -f 'ScrollableMenu.cc' || echo '$(srcdir)/'`ScrollableMenu.cc
+
+evercurses-ScrollableMenu.obj: ScrollableMenu.cc
+	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -MT evercurses-ScrollableMenu.obj -MD -MP -MF $(DEPDIR)/evercurses-ScrollableMenu.Tpo -c -o evercurses-ScrollableMenu.obj `if test -f 'ScrollableMenu.cc'; then $(CYGPATH_W) 'ScrollableMenu.cc'; else $(CYGPATH_W) '$(srcdir)/ScrollableMenu.cc'; fi`
+	$(AM_V_at)$(am__mv) $(DEPDIR)/evercurses-ScrollableMenu.Tpo $(DEPDIR)/evercurses-ScrollableMenu.Po
+#	$(AM_V_CXX)source='ScrollableMenu.cc' object='evercurses-ScrollableMenu.obj' libtool=no \
+#	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) \
+#	$(AM_V_CXX_no)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-ScrollableMenu.obj `if test -f 'ScrollableMenu.cc'; then $(CYGPATH_W) 'ScrollableMenu.cc'; else $(CYGPATH_W) '$(srcdir)/ScrollableMenu.cc'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique

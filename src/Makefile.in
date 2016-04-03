@@ -99,7 +99,8 @@ CONFIG_CLEAN_VPATH_FILES =
 am__installdirs = "$(DESTDIR)$(bindir)"
 PROGRAMS = $(bin_PROGRAMS)
 am_evercurses_OBJECTS = evercurses-main.$(OBJEXT) \
-	evercurses-evercurses.$(OBJEXT) evercurses-window.$(OBJEXT)
+	evercurses-evercurses.$(OBJEXT) evercurses-window.$(OBJEXT) \
+	evercurses-ScrollableMenu.$(OBJEXT)
 evercurses_OBJECTS = $(am_evercurses_OBJECTS)
 evercurses_LDADD = $(LDADD)
 evercurses_LINK = $(CXXLD) $(evercurses_CXXFLAGS) $(CXXFLAGS) \
@@ -257,12 +258,13 @@ top_build_prefix = @top_build_prefix@
 top_builddir = @top_builddir@
 top_srcdir = @top_srcdir@
 AUTOMAKE_OPTIONS = foreign
-AM_LDFLAGS = -lncurses -lpanel
+AM_LDFLAGS = -lncurses -lpanel -lmenu
 evercurses_CXXFLAGS = -std=c++11
-evercurses_LDFLAGS = -lncurses -lpanel
+evercurses_LDFLAGS = -lncurses -lpanel -lmenu
 evercurses_SOURCES = main.cc \
 										 evercurses.cc \
-										 window.cc
+										 window.cc \
+										 ScrollableMenu.cc
 
 all: all-am
 
@@ -350,6 +352,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses-ScrollableMenu.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses-evercurses.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses-main.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/evercurses-window.Po@am__quote@
@@ -409,6 +412,20 @@ evercurses-window.obj: window.cc
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='window.cc' object='evercurses-window.obj' libtool=no @AMDEPBACKSLASH@
 @AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
 @am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-window.obj `if test -f 'window.cc'; then $(CYGPATH_W) 'window.cc'; else $(CYGPATH_W) '$(srcdir)/window.cc'; fi`
+
+evercurses-ScrollableMenu.o: ScrollableMenu.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -MT evercurses-ScrollableMenu.o -MD -MP -MF $(DEPDIR)/evercurses-ScrollableMenu.Tpo -c -o evercurses-ScrollableMenu.o `test -f 'ScrollableMenu.cc' || echo '$(srcdir)/'`ScrollableMenu.cc
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/evercurses-ScrollableMenu.Tpo $(DEPDIR)/evercurses-ScrollableMenu.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ScrollableMenu.cc' object='evercurses-ScrollableMenu.o' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-ScrollableMenu.o `test -f 'ScrollableMenu.cc' || echo '$(srcdir)/'`ScrollableMenu.cc
+
+evercurses-ScrollableMenu.obj: ScrollableMenu.cc
+@am__fastdepCXX_TRUE@	$(AM_V_CXX)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -MT evercurses-ScrollableMenu.obj -MD -MP -MF $(DEPDIR)/evercurses-ScrollableMenu.Tpo -c -o evercurses-ScrollableMenu.obj `if test -f 'ScrollableMenu.cc'; then $(CYGPATH_W) 'ScrollableMenu.cc'; else $(CYGPATH_W) '$(srcdir)/ScrollableMenu.cc'; fi`
+@am__fastdepCXX_TRUE@	$(AM_V_at)$(am__mv) $(DEPDIR)/evercurses-ScrollableMenu.Tpo $(DEPDIR)/evercurses-ScrollableMenu.Po
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	$(AM_V_CXX)source='ScrollableMenu.cc' object='evercurses-ScrollableMenu.obj' libtool=no @AMDEPBACKSLASH@
+@AMDEP_TRUE@@am__fastdepCXX_FALSE@	DEPDIR=$(DEPDIR) $(CXXDEPMODE) $(depcomp) @AMDEPBACKSLASH@
+@am__fastdepCXX_FALSE@	$(AM_V_CXX@am__nodep@)$(CXX) $(DEFS) $(DEFAULT_INCLUDES) $(INCLUDES) $(AM_CPPFLAGS) $(CPPFLAGS) $(evercurses_CXXFLAGS) $(CXXFLAGS) -c -o evercurses-ScrollableMenu.obj `if test -f 'ScrollableMenu.cc'; then $(CYGPATH_W) 'ScrollableMenu.cc'; else $(CYGPATH_W) '$(srcdir)/ScrollableMenu.cc'; fi`
 
 ID: $(am__tagged_files)
 	$(am__define_uniq_tagged_files); mkid -fID $$unique
