@@ -5,7 +5,7 @@
 #include "ScrollableMenu.h"
 
 ScrollableMenu::ScrollableMenu (unsigned int height, 
-		unsigned width, unsigned x, unsigned y) {
+		unsigned width, unsigned x, unsigned y, std::string title) {
 
 	this->height = height;
 	this->width = width;
@@ -23,18 +23,25 @@ ScrollableMenu::ScrollableMenu (unsigned int height,
 	window  = newwin (height, width, x, y);
 	keypad (window, TRUE);
 	set_menu_win (menu, window);
-	set_menu_sub (menu, derwin (window, 6, 38, 0, 0));
+	set_menu_sub (menu, derwin (window, 6, 0, 3, 1));
 	set_menu_format (menu, 5, 1);
 
 	//  set_menu_mark (menu, " * ");
 
 	box (window, 0, 0);
+  printInMiddle (title);
+
+  mvwaddch(window, 2, 0, ACS_LTEE);
+  mvwhline(window, 2, 1, ACS_HLINE, 38);
+  mvwaddch(window, 2, 39, ACS_RTEE);
+
 
 	post_menu (menu);
 	panel = new_panel (window);
 
 	nextWindow = nullptr;
   previousWindow = nullptr;
+  
 }
 ScrollableMenu::~ScrollableMenu () {
 	unpost_menu (menu);

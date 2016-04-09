@@ -21,28 +21,32 @@ int main () {
   refresh ();
 
 
-  ScrollableMenu sm(10,30,1,1);
-  ScrollableMenu sm2(10,30,1,30);
-  ScrollableMenu sm3 (10, 30, 1, 60);
+  ScrollableMenu* sm = new ScrollableMenu (10,30,0,0, "Notebooks");
+  ScrollableMenu* sm2 = new ScrollableMenu (10,30,0,30, "Notes");
+  ScrollableMenu* sm3 = new ScrollableMenu (10, 30, 0, 60, "Note Title");
   
-  sm.setNextWindow (&sm2);
-  sm2.setNextWindow (&sm3);
-  sm3.setNextWindow (&sm);
+  sm->setNextWindow (sm2);
+  sm2->setNextWindow (sm3);
+  sm3->setNextWindow (sm);
 
   update_panels ();
   doupdate ();
-  ScrollableMenu* activeWindow = &sm;
+  Window* activeWindow = sm;
   while ((char(input) != 'q') && (char(input) != 'Q')) {
     switch (input) {
-      case KEY_DOWN:
-        activeWindow->nextItem ();
+      case KEY_DOWN: {
+        ScrollableMenu* smw = dynamic_cast <ScrollableMenu*> (activeWindow);
+        smw->nextItem ();
         break;
-      case KEY_UP:
-        activeWindow->previousItem ();
+                     }
+      case KEY_UP: {
+        ScrollableMenu* smw = dynamic_cast <ScrollableMenu*> (activeWindow);
+        smw->previousItem ();
         break;
+                   }
       case '\t':
         top_panel ((PANEL*) panel_userptr (activeWindow->getPanel ()));
-        activeWindow = (ScrollableMenu*) activeWindow->getNextWindow ();
+        activeWindow = activeWindow->getNextWindow ();
         break;
       case '\n':
         activeWindow->onSelect ();
@@ -53,7 +57,7 @@ int main () {
     refresh ();
     input = getch ();
   }
-
+  
   endwin ();
   return 0;
 }

@@ -12,7 +12,7 @@ class ScrollableMenu : public Window{
    public:
 
     ScrollableMenu (unsigned int, unsigned int, unsigned int,
-        unsigned int);
+        unsigned int, std::string);
     ~ScrollableMenu ();
     
     void addItem (std::string, std::string);

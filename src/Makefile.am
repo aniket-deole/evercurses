@@ -11,5 +11,6 @@ evercurses_LDFLAGS = -lncurses -lpanel -lmenu
 
 evercurses_SOURCES = main.cc \
 										 evercurses.cc \
-										 ScrollableMenu.cc
+										 ScrollableMenu.cc \
+										 window.cc
 

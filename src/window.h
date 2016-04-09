@@ -35,5 +35,7 @@ class Window {
     PANEL* getPanel () {
       return panel;
     }
+
+    void printInMiddle (std::string);
 };
 #endif
