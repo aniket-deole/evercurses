@@ -2,6 +2,7 @@
 #define _WINDOW_H__
 #include <ncurses.h>
 #include <panel.h>
+
 class Window {
   public:
     WINDOW* window;
@@ -11,9 +12,28 @@ class Window {
     unsigned int x;
     unsigned int y;
 
-    Window (unsigned int, unsigned int, unsigned int, unsigned int);
-    ~Window () {}
+    chtype color;
 
-    void refresh ();
+    Window* nextWindow;
+    Window* previousWindow;
+
+    virtual void refresh () = 0;
+    
+    Window* getNextWindow () {
+      return nextWindow;
+    }
+    
+    Window* getPreviousWindow (){
+      return previousWindow;
+    }
+
+    virtual void onSelect () = 0;
+
+    virtual void setNextWindow (Window*) = 0;
+    virtual void setPreviousWindow (Window*) = 0;
+
+    PANEL* getPanel () {
+      return panel;
+    }
 };
 #endif

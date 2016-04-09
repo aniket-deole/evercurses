@@ -25,9 +25,9 @@ int main () {
   ScrollableMenu sm2(10,30,1,30);
   ScrollableMenu sm3 (10, 30, 1, 60);
   
-  sm.nextPanel (&sm2);
-  sm2.nextPanel (&sm3);
-  sm3.nextPanel (&sm);
+  sm.setNextWindow (&sm2);
+  sm2.setNextWindow (&sm3);
+  sm3.setNextWindow (&sm);
 
   update_panels ();
   doupdate ();
@@ -38,14 +38,14 @@ int main () {
         activeWindow->nextItem ();
         break;
       case KEY_UP:
-        activeWindow->prevItem ();
+        activeWindow->previousItem ();
         break;
       case '\t':
         top_panel ((PANEL*) panel_userptr (activeWindow->getPanel ()));
-        activeWindow = activeWindow->getNextMenu ();
+        activeWindow = (ScrollableMenu*) activeWindow->getNextWindow ();
         break;
       case '\n':
-        activeWindow->refreshSubsequentItems ();
+        activeWindow->onSelect ();
         break;
     }        
     update_panels ();

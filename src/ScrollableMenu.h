@@ -6,7 +6,9 @@
 #include <menu.h>
 #include <panel.h>
 
-class ScrollableMenu {
+#include "window.h"
+
+class ScrollableMenu : public Window{
    public:
 
     ScrollableMenu (unsigned int, unsigned int, unsigned int,
@@ -15,34 +17,19 @@ class ScrollableMenu {
     
     void addItem (std::string, std::string);
 
+    void setNextWindow (Window*);
+    void setPreviousWindow (Window*);
     void refresh ();
+
+    void onSelect ();
     
     void nextItem ();
-    void prevItem ();
-
-    void nextPanel (ScrollableMenu* sm);
-    PANEL* getPanel () {
-      return panel;
-    }
-
-    ScrollableMenu* getNextMenu () {
-      return nextMenu;
-    }
-
-    void refreshSubsequentItems ();
+    void previousItem ();
 
  private:
     ITEM** items;
     MENU* menu;
-    WINDOW* window;
 
-    PANEL* panel;
-
-    chtype color;
-
-    unsigned int height, width, x, y;
-  
-    ScrollableMenu* nextMenu;
 
 };
 

@@ -33,7 +33,8 @@ ScrollableMenu::ScrollableMenu (unsigned int height,
 	post_menu (menu);
 	panel = new_panel (window);
 
-	nextMenu = nullptr;
+	nextWindow = nullptr;
+  previousWindow = nullptr;
 }
 ScrollableMenu::~ScrollableMenu () {
 	unpost_menu (menu);
@@ -44,13 +45,18 @@ ScrollableMenu::~ScrollableMenu () {
 	}
 }
 
-void ScrollableMenu::nextPanel (ScrollableMenu* sm) {
-	set_panel_userptr (panel, sm->getPanel ());
-	nextMenu = sm;
+void ScrollableMenu::setNextWindow (Window* m) {
+	set_panel_userptr (panel, m->getPanel ());
+	nextWindow = m;
 }
 
-void ScrollableMenu::refreshSubsequentItems () {
-	nextMenu->refresh ();
+void ScrollableMenu::setPreviousWindow (Window* m) {
+  set_panel_userptr (panel, m->getPanel());
+  previousWindow = m;
+}
+
+void ScrollableMenu::onSelect () {
+	nextWindow->refresh ();
 }
 
 void ScrollableMenu::addItem (std::string title, std::string descr) {
@@ -84,11 +90,12 @@ void ScrollableMenu::refresh () {
   post_menu (menu);	
   wrefresh (window); 
 }
+
 void ScrollableMenu::nextItem () {
 	menu_driver (menu, REQ_DOWN_ITEM);
 }
 
-void ScrollableMenu::prevItem () {
+void ScrollableMenu::previousItem () {
 	menu_driver (menu, REQ_UP_ITEM);
 }
 
