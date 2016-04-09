@@ -1,1 +1,0 @@
-evercurses.o: evercurses.cc
