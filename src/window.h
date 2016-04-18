@@ -17,6 +17,8 @@ class Window {
     Window* nextWindow;
     Window* previousWindow;
 
+    std::string tag;
+
     virtual void refresh () = 0;
     
     Window* getNextWindow () {

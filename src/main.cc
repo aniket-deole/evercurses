@@ -5,6 +5,30 @@
 #include "ScrollableMenu.h"
 #include "window.h"
 
+ScrollableMenu* sm, *sm2, *sm3;
+
+void initWindows () {
+ 
+  int fullWindowX, fullWindowY;
+
+  getmaxyx (stdscr, fullWindowY, fullWindowX);
+ 
+  if (fullWindowX > 80) {
+    sm = new ScrollableMenu (fullWindowY, (int) (fullWindowX * 0.2), 0, 0, "Notebooks");  
+    sm2 = new ScrollableMenu (fullWindowY,(int) (fullWindowX * 0.2),0, 
+        (int) (fullWindowX * 0.2) - 1, "Notes");
+    sm3 = new ScrollableMenu (fullWindowY, (int)(fullWindowX * 0.6) + 3, 0, 
+        (int) (fullWindowX * 0.4) - 2, "Note Title");
+  } else {
+    endwin ();
+    printf ("%d %d\n", fullWindowX, fullWindowY);
+    exit (0);
+  }
+
+
+  return;
+}
+
 int main () {
   auto input = 0;
   initscr ();
@@ -20,11 +44,8 @@ int main () {
   start_color ();
   refresh ();
 
-
-  ScrollableMenu* sm = new ScrollableMenu (10,30,0,0, "Notebooks");
-  ScrollableMenu* sm2 = new ScrollableMenu (10,30,0,30, "Notes");
-  ScrollableMenu* sm3 = new ScrollableMenu (10, 30, 0, 60, "Note Title");
-  
+  initWindows ();
+ 
   sm->setNextWindow (sm2);
   sm2->setNextWindow (sm3);
   sm3->setNextWindow (sm);

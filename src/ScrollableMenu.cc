@@ -12,6 +12,8 @@ ScrollableMenu::ScrollableMenu (unsigned int height,
 	this->x = x;
 	this->y = y;
 
+  this->tag = title;
+
 	items = (ITEM**) malloc (sizeof (ITEM*) * 5);
 
 	for (auto i = 0; i < 5; i++) {
@@ -32,8 +34,8 @@ ScrollableMenu::ScrollableMenu (unsigned int height,
   printInMiddle (title);
 
   mvwaddch(window, 2, 0, ACS_LTEE);
-  mvwhline(window, 2, 1, ACS_HLINE, 38);
-  mvwaddch(window, 2, 39, ACS_RTEE);
+  mvwhline(window, 2, 1, ACS_HLINE, width - 2);
+  mvwaddch(window, 2, width, ACS_RTEE);
 
 
 	post_menu (menu);
