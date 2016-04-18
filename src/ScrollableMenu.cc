@@ -14,11 +14,12 @@ ScrollableMenu::ScrollableMenu (unsigned int height,
 
   this->tag = title;
 
-	items = (ITEM**) malloc (sizeof (ITEM*) * 5);
+	items = (ITEM**) calloc (5, sizeof (ITEM*) * 5);
 
-	for (auto i = 0; i < 5; i++) {
+	for (auto i = 0; i < 4; i++) {
 		items[i] = new_item ("hello", "world");
 	}
+  items[4] = NULL;
 
 	menu = new_menu ((ITEM**) items);
 
